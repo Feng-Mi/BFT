@@ -1,14 +1,14 @@
-#include <iostream>
-#include <conio.h>
+#include <iostream> // файл с классами, функциями и переменными для организации ввода-вывода
+#include <conio.h> // файл,для создания текстового интерфейса пользователя
 #include <vector>
 
-#define _USE_MATH_DEFINES
+#define _USE_MATH_DEFINES //vатематические константы не определены в стандартных библиотеках
 #include <math.h>
 
 #include "etype.h"
 #include "calculations.h"
 
-using namespace std;
+using namespace std; // использовать пространство имен std
 
 #define FS (14000)
 #define TS (1.0 / FS)
@@ -20,7 +20,7 @@ vector<f64_t> feed(const size_t& n, _base base);
 void out(std::ostream& out, const vector<complex_t>& vec);
 
 
-f64_t fbase(const u64_t& arg) {
+f64_t fbase(const u64_t& arg) { //внесение параметров гармоник сигналов в соответствующие функции 
 	return 5 * cos(2 * M_PI * 1200 * arg * TS + M_PI_2) +
 		2.5 * cos(2 * M_PI * 4000 * arg * TS + M_PI_2) +
 		cos(2 * M_PI * 11000 * arg * TS + M_PI_4);
@@ -34,24 +34,24 @@ f64_t fbase2(const u64_t& arg) {
 
 int main() {
 
-	auto src = feed(SZ, fbase);
-	auto fftresult = GetComplexFromF64Fast(src);
+	auto src = feed(SZ, fbase);//заполянем вектор дискретными значениями функции fbase
+	auto fftresult = GetComplexFromF64Fast(src);//вызываем функцию для получения комплексных значений БПФ
 
-	cout << "fbase 1:" << endl;
-	out(cout, fftresult);
+	cout << "fbase 1:" << endl; //вывода данных в консольное окно,каждый раз с новой строки
+	out(cout, fftresult);//вызываем функцию out,передавая в качестве первого параметра стандартный поток вывода,а в качестве второго вектор модифицированных значений
 
-	src = feed(SZ, fbase2);
-	fftresult = GetComplexFromF64Fast(src);
+	src = feed(SZ, fbase2);//заполянем вектор дискретными значениями функции fbase2
+	fftresult = GetComplexFromF64Fast(src);//вызываем функцию для получения комплексных значений БПФ
 	cout << endl;
 	cout << "fbase 2:" << endl;
-	out(cout, fftresult);
+	out(cout, fftresult);//вызываем функцию out,передавая в качестве первого параметра стандартный поток вывода,а в качестве второго вектор модифицированных значений
 
-	_getch();
+	_getch(); // возвращает один символ, прочитанный с клавиатуры,без его отображения
 	return 0;
 }
 
 
-vector<f64_t> feed(const size_t& n, _base base) {
+vector<f64_t> feed(const size_t& n, _base base) {//заполняет вектор данных
 
 	vector<f64_t> out;
 
@@ -61,9 +61,9 @@ vector<f64_t> feed(const size_t& n, _base base) {
 	return out;
 }
 
-void out(std::ostream& out, const vector<complex_t>& vec) {
+void out(std::ostream& out, const vector<complex_t>& vec) { //данные будут выведены в консоль через эту функцию, вначале как комплексные отсчеты, а затем, как амплитуды и фазы
 
-	cout << "Complex value output:\n\n";
+	cout << "Complex values output:\n\n";
 
 	for (auto c : vec)
 		cout << c << endl;
