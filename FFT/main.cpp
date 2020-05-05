@@ -2,13 +2,13 @@
 #include <conio.h> // файл,для создания текстового интерфейса пользователя
 #include <vector>
 
-#define _USE_MATH_DEFINES //vатематические константы не определены в стандартных библиотеках
+#define _USE_MATH_DEFINES 
 #include <math.h>
 
 #include "etype.h"
 #include "calculations.h"
 
-using namespace std; // использовать пространство имен std
+using namespace std; // используем пространство имен std
 
 #define FS (14000)
 #define TS (1.0 / FS)
